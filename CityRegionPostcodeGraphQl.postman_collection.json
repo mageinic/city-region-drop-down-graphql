@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "4e3f73f4-3df6-4b83-9657-bbcd4246f7bc",
+		"name": "CityRegionPostcodeGraphQl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8434423"
+	},
+	"item": [
+		{
+			"name": "City",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Store",
+						"value": "default",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "\n{\n  CityInfo (filter: {}, pageSize: 5, currentPage: 1, sort: {}) {\n    items {\n      id\n      code\n      country_id\n      default_name\n      region_id\n    }\n    total_count\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/graphql",
+					"protocol": "http",
+					"host": [
+						"mage247",
+						"mageinic",
+						"com"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Postcode",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  PostcodeInfo(filter: {}, pageSize: 5, currentPage: 1, sort: {}) {\n    items {\n      id\n      city_id\n      country_id\n      postcode\n      region_id\n    }\n    total_count\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/graphql",
+					"protocol": "http",
+					"host": [
+						"mage247",
+						"mageinic",
+						"com"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

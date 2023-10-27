@@ -1,0 +1,94 @@
+# MageINIC
+# Copyright (C) 2023 MageINIC <support@mageinic.com>
+#
+# NOTICE OF LICENSE
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+#
+# Do not edit or add to this file if you wish to upgrade this extension to newer
+# version in the future.
+#
+# @category MageINIC
+# @package MageINIC_CityRegionPostcodeGraphQl
+# @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+# @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+# @author MageINIC <support@mageinic.com>
+
+type Query {
+    CityInfo(
+        filter: CityFilterInput @doc(description: "Apply filters by filed.")
+        pageSize: Int = 5 @doc(description: "The maximum number of pickup locations to return at once. The attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: CitySortInput @doc(description: "Specifies which filed to sort on, and whether to return the results in ascending or descending order.")
+    ):CityOutput @resolver( class: "MageINIC\\CityRegionPostcodeGraphQl\\Model\\Resolver\\City")
+    @doc(description: "Get list of User With Filter")
+    PostcodeInfo(
+        filter: PostcodeFilterInput @doc(description: "Apply filters by filed.")
+        pageSize: Int = 5 @doc(description: "The maximum number of pickup locations to return at once. The attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: PostcodeSortInput @doc(description: "Specifies which filed to sort on, and whether to return the results in ascending or descending order.")
+    ):PostcodeOutput @resolver( class: "MageINIC\\CityRegionPostcodeGraphQl\\Model\\Resolver\\Postcode")
+    @doc(description: "Get list of User With Filter")
+}
+input CityFilterInput {
+    id: FilterTypeInput   @doc(description: "Filter By unique ID of Entity Id City Id.")
+    region_id: FilterTypeInput  @doc(description: "Filter City by Region Id.")
+    code: FilterTypeInput  @doc(description: "Filter City by Shor Code Id.")
+}
+input CitySortInput @doc(description: "CitySortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order.") {
+    id: SortEnum @doc(description: "Id of the City")
+    code: SortEnum @doc(description: "City Short code.")
+    default_name: SortEnum @doc(description: "Default Name of City.")
+}
+type CityInfo {
+    id: Int @doc(description: "The unique ID Entity Id")
+    country_id: String @doc(description: "Country Id")
+    region_id: String @doc(description: "Region Id.")
+    code: String @doc(description: "City Short code.")
+    default_name: String @doc(description: "Default Name of City.")
+}
+type CityOutput {
+    total_count:  Int @doc(description: "")
+    items: [CityInfo] @doc(description: "The number of records returned.")
+}
+
+input PostcodeFilterInput {
+    id: FilterTypeInput   @doc(description: "Filter By unique ID of Entity Id City Id.")
+    city_id: FilterTypeInput  @doc(description: "Filter City by Region Id.")
+}
+input PostcodeSortInput @doc(description: "CitySortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order.") {
+    id: SortEnum @doc(description: "Id of the City")
+    city_id: SortEnum @doc(description: "City Id.")
+    postcode: SortEnum @doc(description: "Default Postcode .")
+}
+
+type PostcodeInfo {
+    id: Int @doc(description: "The unique ID Entity Id")
+    country_id: String @doc(description: "Country Id")
+    region_id: String @doc(description: "Region Id.")
+    city_id: String @doc(description: "Region Id.")
+    postcode: String @doc(description: "City Short code.")
+}
+type PostcodeOutput {
+    total_count:  Int @doc(description: "")
+    items: [PostcodeInfo] @doc(description: "The number of records returned.")
+}
+
+type StoreConfig {
+    city_region_postcode_module_enabled : Int @doc(description: "Module Enable. 0 (No) or 1 (Yes).")
+    country_searchable : Int @doc(description: "Country Searchable. 0 (No) or 1 (Yes).")
+    region_searchable : Int @doc(description: "Region Searchable. 0 (No) or 1 (Yes).")
+    city_enable : Int @doc(description: "City Enable if you want show list of city on dropdown. 0 (No) or 1 (Yes).")
+    city_searchable : Int
+    @doc(description: "City Searchable if you want search city on dropdown list. 0 (No) or 1 (Yes).")
+    postcode_enable : Int
+    @doc(description: "Postcode Enable if you want show list of postcode on dropdown. 0 (No) or 1 (Yes).")
+    postcode_searchable : Int
+    @doc(description: "Postcode Searchable if you want search postcode on dropdown list. 0 (No) or 1 (Yes).")
+}
