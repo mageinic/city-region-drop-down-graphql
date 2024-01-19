@@ -7,7 +7,7 @@
 Run the following command in Magento 2 root folder:
 
 ```
-composer require mageinic/cityregionpostcodegraphql
+composer require mageinic/city-region-postcode-graphql
 
 php bin/magento maintenance:enable
 php bin/magento setup:upgrade
@@ -22,7 +22,7 @@ Magento 2 City Region Drop-down GraphQL requires installing [MageINIC City Regio
 
 **Or Install via composer [Recommend]**
 ```
-composer require mageinic/cityregionpostcode
+composer require mageinic/city-region-postcode-graphql
 ```
 
 ## 2. How to use

@@ -1,10 +1,10 @@
 {
-    "name": "mageinic/cityregionpostcodegraphql",
+    "name": "mageinic/city-region-post-code-graphql",
     "description": "City Region Drop-down GraphQL is a part of MageINIC City Region Drop-down extension that adds GraphQL features. This extension extends City Region Drop-down definitions..",
     "require": {
         "php": "^8.0",
         "mageinic/core": "1.0.*",
-        "mageinic/cityregionpostcode": "1.0.*",
+        "mageinic/city-region-post-code": "1.0.*",
         "magento/module-directory": "100.4.*",
         "magento/module-customer": "103.0.*",
         "magento/module-checkout": "100.4.*"
